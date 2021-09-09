@@ -10,9 +10,8 @@ const GetAPI = async () => {
     return Response
 }
 
-GetAPI().then((res) => {
-    console.log(res)
-})
+
+
 
 app.get('/', (req, Res) => {
     GetAPI().then(res => {
