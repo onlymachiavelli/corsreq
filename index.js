@@ -5,7 +5,7 @@ const axios = require('axios')
 app.use(cors())
 const PORT = 3000
 
-app.get('/', async (req, Res) => {
+app.get('/', async (req, res) => {
     const response = await axios(`http://ip-api.com/json/`).then((res) => res.data)
     return res.json(response)
 })
