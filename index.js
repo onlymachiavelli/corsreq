@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const axios = require('axios')
+const PORT = 3000
 const GetAPI = async () => {
     const Response = await axios(`http://ip-api.com/json/`)
         .then((res) => res.data)
@@ -16,4 +17,4 @@ app.get('/', (req, Res) => {
         Res.send(res)
     })
 })
-app.listen(3000)
+app.listen(process.env.PORT || PORT, () => { console.log(`APP IS RUNNIND : ${PORT}`) })
