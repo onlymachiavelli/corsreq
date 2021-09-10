@@ -1,16 +1,16 @@
-const express = require("express");
-const cors = require("cors");
-const app = express();
-const axios = require("axios");
-app.use(cors());
-const PORT = 3000;
+const express = require("express")
+const cors = require("cors")
+const app = express()
+const axios = require("axios")
+app.use(cors())
+const PORT = 3000
 const SetPaths = (strpaths) => {
-  let path = "";
+  let path = ""
   for (let i = 0; i < strpaths.length; i++)
     if (strpaths[i] === "*") {
-      path += strpaths[i];
-    } else path += strpaths[i];
-};
+      path += strpaths[i]
+    } else path += strpaths[i]
+}
 
 app.get("/:protocol/:url/:domaine/:paths", async (req, res) => {
   let URL = String(
@@ -20,11 +20,11 @@ app.get("/:protocol/:url/:domaine/:paths", async (req, res) => {
       "." +
       req.params.domaine +
       "/" +
-      req.params.paths
-  );
-  const Response = await axios.get(URL);
-  return res.json(Response.data);
-});
+      SetPaths(req.params.paths)
+  )
+  const Response = await axios.get(URL)
+  return res.json(Response.data)
+})
 app.listen(process.env.PORT || PORT, () => {
-  console.log(`APP IS RUNNIND : ${PORT}`);
-});
+  console.log(`APP IS RUNNIND : ${PORT}`)
+})
