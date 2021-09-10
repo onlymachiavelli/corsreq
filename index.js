@@ -8,8 +8,9 @@ const SetPaths = (strpaths) => {
   let path = ""
   for (let i = 0; i < strpaths.length; i++)
     if (strpaths[i] === "*") {
-      path += strpaths[i]
+      path += "/"
     } else path += strpaths[i]
+  return path
 }
 
 app.get("/:protocol/:url/:domaine/:paths", async (req, res) => {
@@ -20,7 +21,7 @@ app.get("/:protocol/:url/:domaine/:paths", async (req, res) => {
       "." +
       req.params.domaine +
       "/" +
-      SetPaths(req.params.paths)
+      SetPaths(String(req.params.paths))
   )
   const Response = await axios.get(URL)
   return res.json(Response.data)
