@@ -20,7 +20,7 @@ app.get("/:protocol/:url/:domaine/:paths", async (req, res) => {
       "." +
       req.params.domaine +
       "/" +
-      req.params.path
+      req.params.paths
   );
   const Response = await axios.get(URL);
   return res.json(Response.data);
